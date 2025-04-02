@@ -1,0 +1,238 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e7e7e7;
+    overflow:hidden;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+#inputField {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    outline: none; /* Remove the outline */
+}
+
+#inputField:focus {
+    outline: none; /* Remove outline on focus */
+    border-color: #4CAF50; /* Optional: add a subtle border color change on focus */
+}
+
+#inputField.correct {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+}
+
+
+
+.keys {
+    display: flex;
+    list-style: none;
+}
+
+li{
+    box-shadow: 0px -6px 10px #e7e7e7, 0px 4px 15px rgba(0,0,0,0.15);
+    transition: 0.5s;
+    height: 2.5em;
+    font-size: 1em;
+    width: 3em;
+    margin: .3em;
+    background-color: #f2f2f2;
+    border-radius: 0.5em;
+    line-height: 2.5em;
+    letter-spacing: 1px;
+    text-align: center;
+}
+li:hover{
+    box-shadow: 0 2px 0 rgba(0,0,0, 0.15);
+    cursor: pointer;
+    top:3px;
+}
+
+#backspace{
+    width: 7em;
+}
+#tab{
+    width: 5em;
+}
+#capslock{
+    width: 6.4em;
+}
+#enter{
+    width: 7em;
+}
+#shift{
+    width: 7.35em;
+}
+#shift.active {
+    background-color: #4CAF50;
+    color: white;
+    opacity: 1 !important;
+}
+#shift.highlight {
+    background-color: #ffeb3b;
+    opacity: 1 !important;
+    box-shadow: 0 0 5px rgba(255, 235, 59, 0.5);
+}
+#space{
+    width: 22em;
+}
+#one{
+    width: 3.7em;
+}
+#slash{
+    width:5em;
+}
+#spacing{
+    display: flex;
+    list-style: none;
+    padding-left: 1.4em;
+}
+
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 10px 0;
+    justify-content: center;
+}
+
+.level-controls {
+    display: flex;
+    align-items: center;
+    height:10em;
+    width: 10em; 
+    gap: 5px;
+}
+
+.level-controls button {
+    padding: 3px 6px;
+    font-size: 20px;
+    height: 1.5em;
+    width: 1.5em;
+    cursor: pointer;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+} 
+/* Highlighted keys for the opacity settings */
+.key.highlight {
+    background-color: yellow; /* Example color for highlighted keys */
+    color: black; /* Ensure the text is readable */
+    opacity: 1; /* Make sure the highlighted key is visible even in necessary mode */
+}
+
+/* Keyboard opacity settings */
+.key.guided {
+    opacity: 0.6; /* Less visible in guided mode */
+}
+
+.key.necessary {
+    opacity: 0.6; /* Less visible in necessary mode */
+}
+
+.key.none {
+    opacity: 0; /* Completely invisible in 'none' mode */
+}
+
+.word-display {
+    font-size: 2rem;
+    text-align: center;
+    margin: 15px 0;
+    padding: 5px;
+    color: #333;
+    font-weight: 500;
+    border-bottom: 2px solid #ddd;
+    min-width: 200px;
+    display: inline-block;
+}
+
+#tilde.highlight {
+    background-color: #ffeb3b;
+    opacity: 1 !important;
+}
+
+/* Add shift state handling for tilde */
+#tilde.shift-active::after {
+    content: '~';
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-size: 0.8em;
+}
+
+.side-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.side-menu.collapsed {
+    transform: translateX(-100%);
+}
+
+#menuToggle {
+    position: absolute;
+    right: -40px;
+    top: 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    font-size: 20px;
+}
+
+.menu-content {
+    padding: 20px;
+    width: 250px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+}
+
+.menu-section h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+.opacity-controls {
+    margin-bottom: 15px;
+}
+
+.opacity-controls select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.typing-area {
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+}

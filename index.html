@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The TypingProfessor - A Typing Teacher for Muhammad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>The TypingProfessor - A Typing Teacher for Muhammad</h1>
+    <div class="typing-area">
+        <div id="Word" class="word-display">Word</div>
+        <input type="text" id="inputField" readonly>
+    </div>
+    
+    <!-- Add this before the keyboard div -->
+    <div class="side-menu collapsed">
+        <button id="menuToggle">☰</button>
+        <div class="menu-content">
+            <div class="menu-section">
+                <h3>Keyboard Settings</h3>
+                <div class="opacity-controls">
+                    <label for="opacitySettings">Keyboard Opacity:</label>
+                    <select id="opacitySettings">
+                        <option value="guided">Guided</option>
+                        <option value="necessary">Necessary</option>
+                        <option value="none">None</option>
+                    </select>
+                </div>
+            </div>
+            <div class="menu-section">
+                <h3>Level Control</h3>
+                <div class="level-controls">
+                    <span>Level: <span id="level">1</span></span>
+                    <button id="levelDown">⬇</button>
+                    <button id="levelUp">⬆</button>
+                </div>
+            </div>
+            <div class="menu-section">
+                <h3>Word Management</h3>
+                <div id="wordManagement"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Virtual keyboard -->
+    <div>
+        <div id="functionbar">
+            <ul class="keys">
+                <li id="esc">esc</li>
+                <div id="spacing">
+                    <li>F1</li>
+                    <li>F2</li>
+                    <li>F3</li>
+                    <li>F4</li>
+                </div>
+                <div id="spacing">
+                    <li>F5</li>
+                    <li>F6</li>
+                    <li>F7</li>
+                    <li>F8</li>
+                </div>
+                <div id="spacing">
+                    <li>F9</li>
+                    <li>F10</li>
+                    <li>F11</li>
+                    <li>F12</li>
+                </div>
+                <li id="del">del</li>
+            </ul>
+        </div>
+        <div id="keyboard">
+            <ul class="keys">
+                <li class="key" id="tilde">`</li>
+                <li class="key" id="1">1</li>
+                <li class="key" id="2">2</li>
+                <li class="key" id="3">3</li>
+                <li class="key" id="4">4</li>
+                <li class="key" id="5">5</li>
+                <li class="key" id="6">6</li>
+                <li class="key" id="7">7</li>
+                <li class="key" id="8">8</li>
+                <li class="key" id="9">9</li>
+                <li class="key" id="0">0</li>
+                <li class="key" >_</li>
+                <li class="key" >=</li>
+                <li class="key" id="backspace">backspace</li>
+            </ul>
+            <ul class="keys">
+                <li  class="key" id="tab">tab</li>
+                <li  class="key" >Q</li>
+                <li  class="key" >W</li>
+                <li  class="key" >E</li>
+                <li class="key" >R</li>
+                <li class="key" >T</li>
+                <li class="key" >Y</li>
+                <li class="key" >U</li>
+                <li class="key" >I</li>
+                <li class="key" >O</li>
+                <li class="key" >P</li>
+                <li class="key" >[</li>
+                <li class="key" >]</li>
+                <li class="key" id="slash">\</li>
+            </ul>
+            <ul class="keys">
+                <li class="key" id="capslock">caps lock</li>
+                <li class="key" >A</li>
+                <li class="key" >S</li>
+                <li class="key" >D</li>
+                <li class="key" >F</li>
+                <li class="key" >G</li>
+                <li class="key" >H</li>
+                <li class="key" >J</li>
+                <li class="key" >K</li>
+                <li class="key" >L</li>
+                <li class="key" >;</li>
+                <li class="key" >'</li>
+                <li id="enter">enter</li>
+            </ul>
+            <ul class="keys">
+                <li class="key"  id="shift">shift</li>
+                <li class="key" >Z</li>
+                <li class="key" >X</li>
+                <li class="key" >C</li>
+                <li class="key" >V</li>
+                <li class="key" >B</li>
+                <li class="key" >N</li>
+                <li class="key" >M</li>
+                <li class="key" >,</li>
+                <li class="key" >.</li>
+                <li class="key" >/</li>
+                <li class="key" id="shift">shift</li>
+                <li id="up">↑</li>
+            </ul>
+            <ul class="keys">
+                <li id="one">ctrl</li>
+                <li id="one">fn</li>
+                <li id="one">alt</li>
+                <li class="key" id="space">space</li>
+                <li id="one">alt</li>
+                <li id="one">fn</li>
+                <li id="one">ctrl</li>
+                <li id="left">←</li>
+                <li id="down">↓</li>
+                <li id="right">→</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
