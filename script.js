@@ -41,61 +41,50 @@ function setRandomWord() {
 
 // Highlight the keys based on the current word and opacity setting
 function highlightKeys() {
-    // Remove all highlights first
+    const currentWordArray = currentWord.split('');
+    
+    // Clear previous highlights
+    document.querySelectorAll('.key').forEach(key => key.classList.remove('highlight'));
+
+    // Get the next character the user has to type
+    const nextChar = wordDisplay.textContent[inputField.value.length];
+    
+    if (!nextChar) return; // Stop if there's nothing to type
+
+    // Select all keys
     keys.forEach(key => {
-        key.classList.remove('highlight');
+        const keyText = key.textContent.trim().toLowerCase();
+
+        // Guided mode: highlight only the next key
+        if (currentOpacitySetting === 'guided') {
+            if (keyText === nextChar.toLowerCase()) {
+                key.classList.add('highlight');
+            }
+        }
+        // Necessary mode: highlight all the keys in the current word
+        else if (currentOpacitySetting === 'necessary') {
+            if (currentWordArray.includes(keyText)) {
+                key.classList.add('highlight');
+            }
+        }
+
+        // Highlight uppercase letters: Shift should be highlighted first
+        if (nextChar === nextChar.toUpperCase() && nextChar.match(/[A-Z]/)) {
+            if (keyText === 'shift') {
+                key.classList.add('highlight'); // Highlight Shift
+            } else if (keyText === nextChar.toLowerCase()) {
+                // Delay highlighting the uppercase letter after Shift
+                setTimeout(() => {
+                    key.classList.add('highlight');
+                }, 150); // 150ms delay to ensure Shift appears first
+            }
+        } else if (keyText === nextChar.toLowerCase()) {
+            // Highlight lowercase letters immediately
+            key.classList.add('highlight');
+        }
     });
-
-    // Don't highlight anything in 'none' mode
-    if (currentOpacitySetting === 'none') return;
-
-    const remainingWord = currentWord || wordDisplay.textContent.substring(inputField.value.length);
-    const currentWordArray = remainingWord.split('');
-    const nextChar = currentWordArray[0];
-
-    // Handle space key separately
-    if (nextChar === ' ') {
-        const spaceBar = document.getElementById('space');
-        if (spaceBar) {
-            spaceBar.classList.add('highlight');
-        }
-        return;
-    }
-
-    // Check if next character needs shift
-    const needsShift = nextChar && nextChar === nextChar?.toUpperCase() && !isCapsLockActive;
-
-    if (currentOpacitySetting === 'guided') {
-        // If shift is needed but not active, only highlight shift
-        if (needsShift && !isShiftActive) {
-            document.querySelectorAll('#shift').forEach(shiftKey => {
-                shiftKey.classList.add('highlight');
-            });
-            return; // Don't highlight the letter key yet
-        }
-
-        // If shift is active or not needed, highlight the letter key
-        keys.forEach(key => {
-            const keyText = key.textContent.trim();
-            if (keyText.toLowerCase() === nextChar?.toLowerCase()) {
-                key.classList.add('highlight');
-            }
-        });
-    } else if (currentOpacitySetting === 'necessary') {
-        // Existing necessary mode logic
-        if (needsShift) {
-            document.querySelectorAll('#shift').forEach(shiftKey => {
-                shiftKey.classList.add('highlight');
-            });
-        }
-        keys.forEach(key => {
-            const keyText = key.textContent.trim();
-            if (currentWordArray.some(char => char.toLowerCase() === keyText.toLowerCase())) {
-                key.classList.add('highlight');
-            }
-        });
-    }
 }
+
 
 opacitySettings.addEventListener('change', (event) => {
     currentOpacitySetting = event.target.value;
@@ -188,6 +177,9 @@ keys.forEach(key => {
         
         // Handle space key
         if (keyText === 'space') {
+            keyval = ' ';
+        }
+        if (keyText === 'tab') {
             keyval = ' ';
         }
 
